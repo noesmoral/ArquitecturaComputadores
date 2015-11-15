@@ -3,23 +3,27 @@
 #include <iostream>
 #include <time.h>
 #include <iomanip>
+#include <math.h>
 
 using namespace std;
 
+float cuadrado = 0.0F;
 
 //Funcion que calcula
-float fy(int y, int n, float h) {
-	if (y==0)
+float fy(int i, int n, float h) {
+	if (i==0)
 	{	
 		return 1.0F;
 	}
-	if (y==(int)n)
+	if (i==(int)n)
 	{
-		return 0.0F;
+		return 0.5F;
 	}
 	else
 	{
-		return (float)y*h;
+		cuadrado = (float)i*h;
+		cuadrado = pow(cuadrado, 2);
+		return 2*(1.0F/(1.0F+cuadrado));
 	}	
 }
 
@@ -38,25 +42,32 @@ int main(int argc, char *argv[]) {
 
 	cout << "Inserte el numero de divisiones con el formato 0.0" << endl;
 	cin >> n;
+	n = (float)n;
 
 	//calculo de las divisiones
 	h = 1.00F / n;
 
-	//calcula H/2
-	h2 = h / 2.0f;
+	//calcula H/2 que es el multiplicador
+	h2 = h / 2.0F;
 
-
-	for (size_t i = 1; i < n-1; i++)
+	for (size_t i = 0; i < n+1; i++)
 	{
-		suma = suma + (h / 2)*(fy(i-1,n,h) + 2 * fy(i, n, h) + fy(i+1, n, h));
-		//suma=suma+h2+(fy(i, n, h) + fy(i+1, n, h));
+		/*suma = suma + (fy(i, n, h));*/
+		suma=suma+fy(i, n, h);
 	}
 
+	//Multiplicacion del h2
+	suma = h2*suma;
+
+	//Multiplicacion 4 cuatro para obtener aproximacion de (pi/4) a pi
 	cout << "Resultado" << endl;
 	suma = 4.0f*suma;
 	cout << suma << endl;
 
 	printf("Tiempo transcurrido: %f", ((double)clock() - start) / CLOCKS_PER_SEC);//muestra contador tiempo
+	cout << endl;
 	system("pause");		//pause para no cerrar ventana
 	return 0;
 }
+
+//No funciona bien fallo al aproximarse posible acausa la conversion cast de algunos de los datos
