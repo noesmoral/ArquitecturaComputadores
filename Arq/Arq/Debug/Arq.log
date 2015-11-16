@@ -1,9 +1,9 @@
-﻿Compilación iniciada a las 15/11/2015 20:41:49.
+﻿Compilación iniciada a las 16/11/2015 0:18:06.
      1>Proyecto "C:\Users\noesmoral\Documents\GitHub\ArquitecturaComputadores\Arq\Arq\Arq.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
          Source.cpp
-     1>c:\users\noesmoral\documents\github\arquitecturacomputadores\arq\arq\source.cpp(56): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\users\noesmoral\documents\github\arquitecturacomputadores\arq\arq\source.cpp(55): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\noesmoral\Documents\GitHub\ArquitecturaComputadores\Arq\Debug\Arq.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\noesmoral\Documents\GitHub\ArquitecturaComputadores\Arq\Debug\Arq.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\noesmoral\Documents\GitHub\ArquitecturaComputadores\Arq\Debug\Arq.lib" /MACHINE:X86 Debug\Source.obj
          Arq.vcxproj -> C:\Users\noesmoral\Documents\GitHub\ArquitecturaComputadores\Arq\Debug\Arq.exe
