@@ -1,0 +1,11 @@
+*Pasar el codigo del ordenador al super ordenador mediante ssh
+*Copiar documentos desde la posicion en la que estamos desde NUESTRO ordenador-> scp fuente.c gic1@172.29.23.181:/areinco/gic1/Practica5/
+*Documentos necesarios (prueba.c y mpd.hosts(172.29.23.181:32))
+*conexion al super ordenador con ssh-> ssh gic1@172.29.23.181
+*contraseña-> gic1
+*Ir a la carpeta especificada
+*Compilar-> mpicc -o fuente fuente.c -lm
+*Ejecutar el mpd.host-> mpdboot -n 1 -f mpd.hosts -r ssh
+*Verificar-> mpdtrace
+*Ejecutar con el numero de procesos deseado-> mpiexec -np 8 ./fuente
+*Para terminar-> mpdallexit
