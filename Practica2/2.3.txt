@@ -1,0 +1,49 @@
+.data
+
+vector1:	.word 1,1,1,1,1,1,1,1,1,1
+		.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1
+	    	.word 1,1,1,1,1,1,1,1,1,1 
+resultado:    	.word 0
+
+.text
+
+ini:		addi r1, r0, #10
+		addi r2, r0, #0
+		
+
+bucle:		lw r12, vector1(r2)
+		lw r13, vector1+4(r2)
+		lw r14, vector1+8(r2)
+		lw r15, vector1+12(r2)
+		lw r16, vector1+16(r2)
+		lw r17, vector1+20(r2)
+		lw r18, vector1+24(r2)
+		lw r19, vector1+28(r2)
+		lw r20, vector1+32(r2)
+		lw r21, vector1+36(r2)
+		lw r22, vector1+40(r2)
+
+		subi r1, r1, #1
+
+		add r23, r23, r12
+		add r23, r23, r13
+		add r23, r23, r14
+		add r23, r23, r15
+		add r23, r23, r16
+		add r23, r23, r17
+		add r23, r23, r18
+		add r23, r23, r19
+		add r23, r23, r20
+		add r23, r23, r21
+		
+		bnez r1, bucle
+		sw resultado(r0), r23
+		addi r2, r2, #40
+trap #6

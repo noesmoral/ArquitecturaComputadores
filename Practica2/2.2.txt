@@ -1,0 +1,51 @@
+.data
+vectora: .word 1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4
+    	 .word 0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2
+
+vectorb: .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    	 .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+.text
+ini:	
+
+	addi 	r1,r0,77 ;
+
+	add  	r2,r0,r0 ;
+	
+	
+
+bucle: 
+	lw 	r12,vectora(r2)  ;
+	lw	r13,vectora+4(r2)  ;
+	lw	r14,vectora+8(r2)  ;
+	lw	r15,vectora+12(r2)  ;
+	lw	r16,vectora+16(r2)  ;
+	lw	r17,vectora+20(r2)  ;
+	lw	r18,vectora+24(r8)  ;
+
+	seq	r19,r12,#0 ;
+	seq	r20,r13,#0 ;
+	seq	r21,r14,#0 ;
+	seq	r22,r15,#0 ;
+	seq	r23,r16,#0 ;
+	seq	r24,r17,#0 ;
+	seq	r25,r18,#0 ;
+
+	sub	r1,r1,7  ;	
+
+	sw	vectorb(r2),r19  ;
+	sw	vectorb+4(r2),r20  ;
+	sw	vectorb+8(r2),r21  ;
+	sw	vectorb+12(r2),r22  ;
+	sw	vectorb+16(r2),r23  ;
+	sw	vectorb+20(r2),r24  ;
+	sw	vectorb+24(r2),r25  ;
+
+	addi 	r2,r2,28 ;
+	
+	
+	bnez	r1,bucle ; 
+	nop	         ;
+
+
+trap	#6

@@ -1,0 +1,37 @@
+.data
+	x:	.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1	
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1	
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+
+	y:	.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1	
+		.double 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+
+	a:	.double 22
+
+.text
+
+ini:	ld f0,a
+	addi r1,r0,#50	
+	addi r2,r0,#400		;400 ya que usar la mitad de ellos ocupando 8 nos lleva a 8*50=400 que es donde empieza r2
+	movi2s vlr,r1		;Ponemos a 50 el numero maximo de datos en el registro vectorial la mitad	
+	
+	lv v0, x(r0)		;empieza desde el 0
+	lv v1, x(r2)		;empieza desde la mitad que es 400
+	lv v2, y(r0)
+	lv v3, y(r2)		
+	
+	multsv v4, f0, v0
+	multsv v5, f0, v1
+	
+	addv v2,v2,v4
+	addv v3,v3,v5
+	
+	sv y(r0),v2
+	sv y(r2),v3
+	
+trap #6	

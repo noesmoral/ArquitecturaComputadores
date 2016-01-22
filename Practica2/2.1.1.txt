@@ -1,0 +1,46 @@
+.data
+vector1:   .double 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+	   .double 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+		
+vector2:   .double 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2	
+	   .double 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+res: .double 0
+
+.text
+ini:	
+
+	addi 	r5,r0,64 		;contador inicializado a (64)
+	sub 	r2,r0,r0 		;inicializamos a 0 para poder meter limpiamente el resultado
+	ld 	f24, res(r0);		
+	add  	r1,r0,r0 ;
+	
+	
+
+bucle: 
+	ld 	f0,vector1(r1) 		;carga del vector1 en el registo flotante (f0) como son dobles solo disponemos de los pares
+	ld	f2,vector2(r1) 		;carga del vector2 en el registo flotante
+	ld	f6,vector1+8(r1) 	;carga del vector1 (+8) en el registo flotante (f6)
+	ld	f8,vector2+8(r1) 	;carga del vector2 (+8) en el registo flotante
+	ld	f12,vector1+16(r1)	;carga del vector1 (+16) en el registo flotante
+	ld	f14,vector2+16(r1) 	;carga del vector2 (+16) en el registo flotante
+	ld	f18,vector1+24(r1) 	;carga del vector1 (+24) en el registo flotante
+	ld	f20,vector2+24(r1) 	;carga del vector2 (+24) en el registo flotante
+
+	multd	f4,f0,f2 		;Realizamos las operaciones pertinentes
+	multd	f10,f6,f8 ;
+	multd	f16,f12,f14 ;
+	multd	f22,f18,f20 ;
+	addd 	f24,f24,f4; 
+	addd 	f24,f24,f10;
+	addd 	f24,f24,f16;
+	addd 	f24,f24,f22;
+
+	sub	r5,r5,4 		;disminuimos el contador
+	
+	add	r1,r1,32 		;aumentamos el inicio desde el cual cojemos el vector
+	
+	bnez	r5,bucle ;
+	sd 	res(r0), f24; 		almacenamos la informacion
+	
+trap	#6

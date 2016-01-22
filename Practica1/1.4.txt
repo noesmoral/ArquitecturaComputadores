@@ -1,0 +1,31 @@
+.data
+vector1:	.word	10,20,30,40,50,60,70,80,90,100
+vector2:	.word	100,90,80,70,60,50,40,30,20,10
+resultado:	.word	0,0,0,0,0,0,0,0,0,0
+
+.text
+ini:
+	addi r1,r0,#0		;registro usado para controlar las posiciones a operar en cada ciclo
+	addi r2,r0,#4		;registro usado para controlar las posiciones a operar en cada ciclo +4
+	addi r3,r0,#4		;contador del bucle
+
+bucle:
+	lv r4,vector(r1)	;almacenamos en r4 el valor del vector(0)
+	lv r5,vector(r1)	;almacenamos en r5 el valor del vector(0)
+
+	lv r6,vector(r2)	;almacenamos en r6 el valor del vector(+4)
+	lv r7,vector(r2)	;almacenamos en r7 el valor del vector(+4)
+
+	add r8,r4,r5		;realizamos la suma
+	add r9,r4,r5		;realizamos la suma
+
+	sv resultado(r1),r8	;guardamos el resultado de la suma en la posicion (0) de resultad
+	sv resultado(r2),r9	;guardamos el resultado de la suma en la posicion (+4) de resultad
+
+	addi r1,r1,#8		;aumentamos el valor del contador !!!cuidado que no se pisen¡¡¡
+	addi r2,r2,#8		;aumentamos el valor del contador
+
+	bnez r3,bucle		;verificamos si salimos r2=(0)
+	subi r3,r3,#1		;disminuimos el numero de iteraciones del bucle esta vez se pone despues para aprovechar al maximo los recurso por eso en vez de 5 se pone un 4 y asi evitar tener que poner nop
+
+trap #6
